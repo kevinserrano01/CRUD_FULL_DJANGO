@@ -10,7 +10,6 @@ def home(request):
 
 def signup(request):
     """Permite registrar usuario"""
-
     if request.method == 'GET': # Envia formulario
         return render(request, 'signup.html', {
             'form': UserCreationForm
