@@ -4,13 +4,13 @@ from django.contrib.auth.models import User # Modelo de usuario
 from django.contrib.auth import login # Crea cookie por nosotros
 from django.db import IntegrityError
 
-# Create your views here.
+
 def home(request):
     """Inicio"""
     return render(request, 'home.html')
 
 def signup(request):
-    """Permite registrar usuario"""
+    """Funcion que permite registrar usuario"""
     if request.method == 'GET': # Envia formulario
         return render(request, 'signup.html', {
             'form': UserCreationForm
@@ -25,7 +25,7 @@ def signup(request):
                 usuario.save() # save user in database
                 login(request, usuario) # Crea cookie en el navegador para ver si las tareas son de este usuario o no.
                 return redirect('tasks') # redireccionar a tareas
-            except IntegrityError:
+            except IntegrityError: # Manejamos el error de la base de datos en caso de que ya exista un usuario
                 return render(request, 'signup.html', {
                     'form': UserCreationForm,
                     "error": 'El usuario ya existe!'
@@ -37,4 +37,5 @@ def signup(request):
                 })
 
 def tasks(request):
+    """Funcion que muestra la lista de tareas del usuario"""
     return render(request, 'tasks.html')
