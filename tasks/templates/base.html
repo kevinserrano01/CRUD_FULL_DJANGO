@@ -27,12 +27,17 @@
           </ul>
             <div class="d-flex">
                 <!-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"> Buscar tarea en barra search-->
+                <!-- Si el usuario ya esta registrado, mostrar solo el boton para cerrar sesion-->
                 {% if user.is_authenticated %}
                 <a href="/logout">
                      <button class="btn btn-outline-success" type="submit">Cerrar Sesion</button>
                  </a>
+                <!-- de lo contrario, mostrar el boton para registrarse o iniciar sesion-->
                 {% else %}
                 <a href="/signup">
+                     <button class="btn btn-outline-success" type="submit">Registrarse</button>
+                 </a>
+                <a href="/signin">
                      <button class="btn btn-outline-success" type="submit">Iniciar Sesion</button>
                  </a>
                 {% endif %}
