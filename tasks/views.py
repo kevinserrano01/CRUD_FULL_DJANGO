@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm # formulario de registro
 from django.contrib.auth.models import User # Modelo de usuario
-from django.contrib.auth import login # Crea cookie por nosotros
+from django.contrib.auth import login, logout # Crea cookie por nosotros
 from django.db import IntegrityError
 
 
@@ -39,3 +39,8 @@ def signup(request):
 def tasks(request):
     """Funcion que muestra la lista de tareas del usuario"""
     return render(request, 'tasks.html')
+
+def signout(request):
+    """Funcion que cierra sesion en la app y lo redirecciona al home"""
+    logout(request)
+    return redirect('home')
